@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gym Membership Form</title>
+</head>
+<body>
+    <h2>Gym Membership Form</h2>
+    <form action="#" th:action="@{/membership}" th:object="${membership}" method="post">
+        <label>Name:</label>
+        <input type="text" th:field="*{name}"/><br/>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}"/><br/>
+        <label>Age:</label>
+        <input type="number" th:field="*{age}"/><br/>
+        <label>Start Date:</label>
+        <input type="date" th:field="*{startDate}"/><br/>
+        <label>End Date:</label>
+        <input type="date" th:field="*{endDate}"/><br/>
+        <label>Gender:</label>
+        <select id="gender" name="gender" th:field="*{gender}">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+          </select>
+        
+        <!-- Add more fields as needed -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

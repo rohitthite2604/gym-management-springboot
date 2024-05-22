@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "Server.port",
+    "type": "java.lang.String",
+    "description": "A description for 'Server.port'"
+  },
+  {
+    "name": "Server.port",
+    "type": "java.lang.String",
+    "description": "A description for 'Server.port'"
+  },
+  {
+    "name": "Server.port",
+    "type": "java.lang.String",
+    "description": "A description for 'Server.port'"
+  },
+  {
+    "name": "thymeleaf.version",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf.version'"
+  },
+  {
+    "name": "thymeleaf-layout-dialect.version",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf-layout-dialect.version'"
+  }
+]}

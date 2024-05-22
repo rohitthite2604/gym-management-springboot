@@ -1,0 +1,130 @@
+nav {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color : black;
+  }
+  
+  #leftNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+  }
+  
+  .container-fluid {
+    border-radius: 10px;
+    font-size: 35px;
+    display: inline-table;
+    padding: 0px 12px;
+    margin-left: 380px;
+    margin-top: 7px;
+    background-color: rgba(142, 140, 140, 0.211);
+    border-radius: 8px;
+  }
+  
+  .container-fluid a {
+    margin: 15px;
+    color: white;
+    text-decoration: none;
+    padding: 6px;
+  }
+  
+  .container {
+    font-size: 40px;
+    margin: 100px 0 0 240px;
+    padding: 10px 0 0 30px;
+    display: inline-block;
+    text-align: center;
+  
+  }
+  #navbtn{
+    margin-right: 20px;
+  }
+  button {
+    font-size: x-large;
+    padding: 4px;
+    margin: 10px;
+    border-radius: 4px;
+    color: aliceblue;
+    background-color: black;
+    border: black;
+  }
+  button:hover {
+    cursor: pointer;
+    color: white;
+  }
+  button a{
+    color: aliceblue;
+  }
+  button a:hover {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
+
+.heading_container {
+    margin-bottom: 25px;
+    display: flex;
+  }
+  
+  .form_container .form-control {
+    width: 100%;
+    border: none;
+    height: 50px;
+    margin-bottom: 25px;
+    padding-left: 25px;
+    border: 1px solid #999;
+    outline: none;
+    color: #000000;
+    border-radius: 5px;
+    outline: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  
+  .form_container .form-control::-webkit-input-placeholder {
+    color: #222222;
+  }
+  
+  .form_container .form-control:-ms-input-placeholder {
+    color: #222222;
+  }
+  
+  .form_container .form-control::-ms-input-placeholder {
+    color: #222222;
+  }
+  
+  .form_container .form-control::placeholder {
+    color: #222222;
+  }
+  
+  .form_container .nice-select .current {
+    font-size: 16px;
+  }
+  
+  .form_container button {
+    margin-top: 15px;
+    border: none;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 10px 55px;
+    background-color: #ffbe33;
+    color: #ffffff;
+    border-radius: 45px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: none;
+  }
+  
+  .form_container button:hover {
+    background-color: #e69c00;
+  }
+  #warning{
+    font-size: 20px;
+    float: left;
+    margin-top: -18px;
+  }

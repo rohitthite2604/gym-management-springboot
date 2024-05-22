@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <nav>
+      <div id="leftNav">
+        <img src="./images/logo2.png" width="140px" height="110px" />
+        <div class="container-fluid">
+          <a href="/">Home</a>
+          <a href="#">About</a>
+          <a href="#">Store</a>
+          <a href="#">Membership</a>
+        </div>
+      </div>
+      <div id="navbtn">
+        <span sec:authorize="!isAuthenticated()">
+          <button><a href="/register">Register</a></button>
+          <button><a href="/login">Login</a></button>
+        </span>
+        <span sec:authorize="isAuthenticated()">
+          <button><a href="/profile">Profile</a></button>
+        </span>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+          <button><a href="/admin">Admin</a></button>
+        </span>
+        <span sec:authorize="hasAuthority('ACCESS_ADMIN_PANEL')">
+          <button><a href="/admin">Admin</a></button>
+        </span>
+        <span sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EDITOR')">
+          <button><a href="/editor">Editor</a></button>
+        </span>
+        <span sec:authorize="isAuthenticated()">
+          <button><a href="/logout">Logout</a></button>
+        </span>
+      </div>
+    </nav>
+</html>
