@@ -1,0 +1,216 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gym Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .left-container {
+            width: 50%; /* Adjust the width to increase the size */
+            height: 80vh; /* Adjust the height to increase vertically */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px; /* Increase padding for more spacing */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Optional: add a border radius for aesthetics */
+        }
+        .right-container {
+            width: 60%; /* Adjust width of the logs section */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        label {
+            margin: 10px 0 5px;
+            color: #555;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .logs-header {
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .logs-table th, .logs-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .logs-table th {
+            background-color: #f2f2f2;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            max-width: 300px;
+            background-color: rgba(0, 0, 0, 0.4);
+            overflow: auto;
+            border-radius: 8px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .close-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const id = document.getElementById("id").value;
+            if (!id) {
+                document.getElementById("message").innerText = "Membership ID is required.";
+                document.getElementById("message").style.color = "red";
+                return false;
+            }
+            return true;
+        }
+        function showPrompt(success, expired, pendingFees, message) {
+            const messageBox = document.getElementById("message");
+            messageBox.innerText = message;
+            if (success) {
+                messageBox.style.color = "green";
+                document.getElementById("successModal").style.display = "block";
+                document.addEventListener('keydown', handleEnterKey);
+            } else if (expired) {
+                messageBox.style.color = "red";
+                document.getElementById("expiredModal").style.display = "block";
+                document.addEventListener('keydown', handleEnterKey);
+            } else if (pendingFees) {
+                messageBox.style.color = "orange";
+                document.getElementById("pendingFeesModal").style.display = "block";
+                document.addEventListener('keydown', handleEnterKey);
+            } else {
+                messageBox.style.color = "red";
+            }
+        }
+        function closeModal() {
+            document.getElementById("successModal").style.display = "none";
+            document.getElementById("expiredModal").style.display = "none";
+            document.getElementById("pendingFeesModal").style.display = "none";
+            document.addEventListener('keydown', handleEnterKey);
+        }
+        function handleEnterKey(event) {
+            if (event.key === "Enter") {
+                closeModal();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="left-container">
+        <h1>Gym Login</h1>
+        <form th:action="@{/attendance}" method="post" onsubmit="return validateForm()">
+            <label for="id">Membership ID:</label>
+            <input type="text" id="id" name="id" required>
+            <button type="submit">Login</button>
+        </form> 
+    </div>
+
+    <div class="right-container">
+        <div class="logs-header">Attendance Logs</div>
+        <table class="logs-table">
+            <thead>
+                <tr>
+                    <th>Member Name</th>
+                    <th>Login Date</th>
+                    <th>Login Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="log : ${attendanceLogs}">
+                    <td th:text="${log.membership.name}"></td>
+                    <td th:text="${T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd').format(log.loginTime)}"></td>
+                    <td th:text="${T(java.time.format.DateTimeFormatter).ofPattern('HH:mm:ss').format(log.loginTime)}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <p><div id="message" th:text="${message}"></div></p>
+            <button class="close-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    <div id="expiredModal" class="modal">
+        <div class="modal-content">
+            <p>Your Membership has expired! Please renew your Membership.</p>
+            <button class="close-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    <div id="pendingFeesModal" class="modal">
+        <div class="modal-content">
+            <p><div id="message" th:text="${message}"></div></p>
+            <button class="close-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const success = /*[[${success}]]*/ false;
+        const expired = /*[[${expired}]]*/ false;
+        const pendingFees = /*[[${pendingFees}]]*/ false;
+        const message = /*[[${message}]]*/ '';
+        showPrompt(success, expired, pendingFees, message);
+        /*]]>*/
+    </script>
+</body>
+</html>

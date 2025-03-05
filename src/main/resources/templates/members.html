@@ -1,24 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head >
     <meta charset="UTF-8">
     <title>Members List</title>
+    <style>
+        body{
+            margin:0;
+        }
+        .table-container {
+            width: 100%;
+            {% comment %} overflow-x: auto; {% endcomment %}
+            margin: 20px 0;
+        }
+        
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 18px;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
+        }
+        
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        
+        .styled-table th, .styled-table td {
+            padding: 13px 35px;
+        }
+        
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+        a.action {
+            font-size: 20px;
+            padding: 5px;
+            text-decoration: none;
+            color: black;
+        }
+        a.action:hover {
+            background-color:white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+        nav{
+            position:relative;
+            background-color:black;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #leftNav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+          }
+          
+          .container-fluid {
+            border-radius: 10px;
+            font-size: 35px;
+            display: inline-table;
+            padding: 0px 12px;
+            margin-left: 277px;
+            margin-top: 7px;
+            background-color: rgba(142, 140, 140, 0.211);
+            border-radius: 8px;
+          }
+          
+          .container-fluid a {
+            margin: 15px;
+            color: white;
+            text-decoration: none;
+            padding: 6px;
+          }
+          
+          .container {
+            font-size: 40px;
+            margin: 100px 0 0 240px;
+            padding: 10px 0 0 30px;
+            display: inline-block;
+            text-align: center;
+          
+          }
+          #navbtn{
+            margin-right: 20px;
+          }
+          
+          .container-fluid a:hover,
+          .container-fluid a.active {
+            color: orangered;
+            cursor: pointer;
+          }
+          button {
+            font-size: x-large;
+            padding: 4px;
+            margin: 10px;
+            border-radius: 4px;
+            color: aliceblue;
+            background-color: black;
+            border: black;
+          }
+          button:hover {
+            cursor: pointer;
+            color: white;
+          }
+          button a{
+            color: aliceblue;
+            text-decoration: none;
+          }
+          button a:hover {
+            cursor: pointer;
+            color: white;
+          }
+
+    </style>
 </head>
 <body>
+    <div>
+        <nav th:replace="/fragments/nav :: nav">
+      </div>
     <h1>Members List</h1>
-    <table>
+<div class="table-container">
+    <table class="styled-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Duration</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Amount Paid</th>
+                <th>Remaining</th>
+                
             </tr>
         </thead>
         <tbody>
-            <tr th:each="member : ${members}">
-                <td th:text="${member.id}"></td>
-                <td th:text="${member.name}"></td>
+            <tr th:each="members : ${members}">
+                <td th:text="${members.id}"></td>
+                <td th:text="${members.name}"></td>
+                <td th:text="${members.age}"></td>
+                <td th:text="${members.gender}"></td>
+                <td th:text="${members.duration}"></td>
+                <td th:text="${members.startDate}"></td>
+                <td th:text="${members.endDate}"></td>
+                <td th:text="${members.amount}"></td>
+                <td th:text="${members.remaining}"></td>
+                <td>
+                <a th:href="@{/members/update/{id}(id=${members.id})}" class="action">Update</a>
+                <a th:href="@{/members/delete/{id}(id=${members.id})}" class="action">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
+</div>
 </body>
 </html>

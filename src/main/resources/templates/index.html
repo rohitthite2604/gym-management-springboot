@@ -40,7 +40,7 @@
           <button><a href="/admin">Admin</a></button>
         </span>
         <span sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EDITOR')">
-          <button><a href="/membership">Editor</a></button>
+          <button><a href="/editor">Editor</a></button>
         </span>
         <span sec:authorize="isAuthenticated()">
           <button><a href="/logout">Logout</a></button>
@@ -50,6 +50,17 @@
     <div class="container">
       <h1 id="mainh1">Welcome to Power Fitness Club</h1>
       <h2 id="mainh2">Build a Healthy Lifestyle</h2>
+      <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <button class="member"><a href="/membership">Add Member</a></button>
+      </span>
+      <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <button class="member"><a href="/members">Member List</a></button>
+      </span>
+      <div>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+          <button class="btn btn-primary"><a href="/attendance" style="font-size:x-large; padding:40px; ">Attendance</a></button>
+        </span>
+      </div>
     </div>
 
   </header>
@@ -193,38 +204,6 @@
 <div>
   <hr class="styled-hr" style="width:100%;">
 </div>
-
-<div class="footer-columns">
-  <!-- Column 1 -->
-  <div class="footer-column" id="footcol1">
-    <h4>About</h4>
-    <ul class="footer-links">
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
-    </ul>
-  </div>
-
-  <!-- Column 2 -->
-  <div class="footer-column" id="footcol2">
-    <h4>Links</h4>
-    <ul class="footer-links">
-      <li><a href="#">Link 4</a></li>
-      <li><a href="#">Link 5</a></li>
-      <li><a href="#">Link 6</a></li>
-    </ul>
-  </div>
-  <!-- Column 3 -->
-  <div class="footer-column" id="footcol3">
-    <h4>Contact Us</h4>
-    <ul class="footer-links">
-      <li><a href="#">Link 7</a></li>
-      <li><a href="#">Link 8</a></li>
-      <li><a href="#">Link 9</a></li>
-    </ul>
-  </div>
-</div>
-
 
   <div class="footer-bottom">
     <p>copyrights &copy;2024 <a href="#">PowerFitnessClub</a> | All Rights Reserved</p>

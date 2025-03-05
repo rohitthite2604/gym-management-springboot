@@ -26,7 +26,7 @@ nav {
   font-size: 35px;
   display: inline-table;
   padding: 0px 12px;
-  margin-left: 380px;
+  margin-left: 277px;
   margin-top: 7px;
   background-color: rgba(142, 140, 140, 0.211);
   border-radius: 8px;
@@ -355,15 +355,10 @@ address p{
   padding-top: 30px;
   padding-bottom: 30px;
 }
-#footcol1{
-  padding-left: 80px;
+button.member{
+  padding: 10px;
+  margin: 10px;
+  background-color: darkgoldenrod;
+  margin-top: 20px;
 }
-#footcol2{
-  padding-left: 182px;
-}
-#footcol3{
-  padding-left: 150px;
-}
-.footer-columns h4{
-  padding-bottom: 25px;
-}
+

@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Gym Membership Form</title>
-</head>
-<body>
-    <h2>Gym Membership Form</h2>
+    <head th:replace="/fragments/head :: head">
+
+        <div>
+          <nav th:replace="/fragments/nav :: nav">
+        </div>
+
+    <div class="container">
+    <div class="heading_container">
+        <h2 style="margin: 23px 0px 5px 130px;">Gym Membership</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+          <div class="form_container">
     <form action="#" th:action="@{/membership}" th:object="${membership}" method="post">
-        <label>Name:</label>
-        <input type="text" th:field="*{name}"/><br/>
-        <label>Email:</label>
-        <input type="email" th:field="*{email}"/><br/>
-        <label>Age:</label>
-        <input type="number" th:field="*{age}"/><br/>
-        <label>Start Date:</label>
-        <input type="date" th:field="*{startDate}"/><br/>
-        <label>End Date:</label>
-        <input type="date" th:field="*{endDate}"/><br/>
-        <label>Gender:</label>
-        <select id="gender" name="gender" th:field="*{gender}">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Others">Others</option>
+        <div class="form-label">
+            <label for="name">Name:</label>
+            <input id="Name" type="text" th:field="*{name}" class="form-control" placeholder="Full Name" required/>
+        </div>
+        <div class="form-label">
+            <label for="email">Email:</label>
+            <input id="Email" type="text" th:field="*{email}" class="form-control" placeholder="Email" required/>
+        <div class="form-label">
+            <label for="age">Age:</label>
+            <input id="Age" type="text" th:field="*{age}" class="form-control" placeholder="Age" required/>
+        </div>
+        <div class="form-label">
+            <label or="startDate">Start Date:</label>
+            <input id="Start_Date" type="date" th:field="*{startDate}" class="form-control" placeholder="Start Date" required/>
+        </div>
+        <div class="form-label">
+            <label for="endDate">End Date:</label>
+            <input id="End_Date" type="date" th:field="*{endDate}" class="form-control" placeholder="End Date" required/>
+        </div>
+        <div class="form-label">
+            <label for="amount">Amount Paid:</label>
+            <input id="Amount" type="text" th:field="*{amount}" class="form-control" placeholder="Amount Paid" required/>
+        </div>
+        <div class="form-label">
+            <label for="remaining">Remaining Amount:</label>
+            <input id="Remaining" type="text" th:field="*{remaining}" class="form-control" placeholder="Remaining Amount" required/>
+        </div>
+        <div class="form-label">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" th:field="*{gender}" class="form-control">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+        </div>
+        <div class="form-label">
+        <label for="duration">Duration:</label>
+        <select id="duration" name="duration" th:field="*{duration}" class="form-control" placeholder="Duration">
+            <option value="1 Month">1 Month</option>
+            <option value="3 Months">3 Months</option>
+            <option value="6 Months">6 Months</option>
+            <option value="1 Year">1 Year</option>
           </select>
+        </div>
         
         <!-- Add more fields as needed -->
-        <button type="submit">Submit</button>
+        <div class="btn_box">
+            <button type="submit">
+              Register
+            </button>
+          </div>
     </form>
-</body>
+        </div>
+    </div>
+</div>
 </html>
